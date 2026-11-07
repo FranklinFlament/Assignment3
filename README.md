@@ -140,6 +140,36 @@ generate_html    notify_discord
 
 Previously processed PDF filenames are skipped using SQLite. The database and generated Markdown files are stored locally in `data/`.
 
+## Google Drive Synchronization
+
+The pipeline monitors a Google Drive-synced folder for new PDF files.
+
+On macOS, install [Google Drive for desktop](https://www.google.com/drive/download/) and sign in to your Google account.
+
+Create the following folder in Google Drive:
+
+```text
+Mon Drive/
+└── ResearchLibrary/
+    └── papers/
+```
+
+Create a symbolic link from the project to the synchronized folder:
+
+```bash
+cd ~/Desktop/Assignment3
+
+DRIVE="$HOME/Library/CloudStorage/GoogleDrive-flamentfranklin02@gmail.com/Mon Drive/ResearchLibrary/papers"
+
+ln -s "$DRIVE" ResearchLibrary/papers
+```
+
+**Note:** The `ln -s` command assumes that `ResearchLibrary/papers` does not already exist. If it exists, move or back up its contents first.
+
+Any new PDF uploaded to this Google Drive folder becomes accessible locally and is automatically detected by the scheduled Airflow DAG.
+
+The synchronization was successfully tested: a PDF uploaded through Google Drive was processed by the pipeline, and a Discord notification was received.
+
 ## Notes
 
 - Ollama must be running before triggering the DAG.
