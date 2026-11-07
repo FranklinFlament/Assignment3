@@ -1,0 +1,150 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport"
+                  content="width=device-width, initial-scale=1">
+            <title>Research Library</title>
+            <style>
+                body {
+                    font-family: system-ui, sans-serif;
+                    max-width: 1000px;
+                    margin: 40px auto;
+                    padding: 0 20px;
+                    background: #f5f6fa;
+                    color: #222;
+                }
+                h1 { margin-bottom: 8px; }
+                .controls {
+                    display: flex;
+                    gap: 12px;
+                    margin: 24px 0;
+                }
+                input, select {
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 8px;
+                    font-size: 15px;
+                }
+                input { flex: 1; }
+                .paper {
+                    background: white;
+                    padding: 24px;
+                    margin-bottom: 16px;
+                    border-radius: 12px;
+                    box-shadow: 0 2px 8px #00000010;
+                }
+                .category {
+                    color: #2563eb;
+                    font-weight: bold;
+                }
+                .keyword {
+                    display: inline-block;
+                    background: #e8edf5;
+                    padding: 5px 10px;
+                    margin: 4px;
+                    border-radius: 20px;
+                    font-size: 13px;
+                }
+                .filename {
+                    color: #777;
+                    font-size: 12px;
+                    margin-top: 16px;
+                }
+            </style>
+        </head>
+        <body>
+            <h1>Research Library</h1>
+            <p>Automatically generated research paper catalog</p>
+
+            <div class="controls">
+                <input id="search" type="text"
+                       placeholder="Search papers...">
+                <select id="category">
+                    <option value="">All categories</option>
+                    <option value="Artificial Intelligence">Artificial Intelligence</option><option value="Artificial Intelligence, Machine Learning, Game Theory">Artificial Intelligence, Machine Learning, Game Theory</option><option value="Business">Business</option><option value="Computer Science">Computer Science</option>
+                </select>
+            </div>
+
+            <p id="count"></p>
+            <div id="papers">
+            <article class="paper"
+                     data-category="Artificial Intelligence">
+                <h2>Lenient Frequency Adjusted Q-learning</h2>
+                <p class="category">Artificial Intelligence</p>
+                <p>This paper introduces a variation of Q-learning, called Lenient Frequency Adjusted Q-learning, that matches the theoretical model precisely and allows for arbitrarily high convergence to Pareto optimal equilibria in cooperative games. The concept of leniency is introduced to be more forgiving for initial mis-coordination, which can lead to suboptimal solutions in cooperative multi-agent games. The paper demonstrates the strength of the evolutionary game theoretic approach by introducing this variation of Q-learning and shows almost certain convergence to Pareto optimal equilibria with growing degree of leniency.</p>
+                <div><span class="keyword">Q-learning</span> <span class="keyword">Lenient Q-learning</span> <span class="keyword">Evolutionary game theory</span> <span class="keyword">Cooperative multi-agent games</span> <span class="keyword">Pareto optimal equilibria</span> <span class="keyword">Convergence</span> <span class="keyword">Frequency Adjusted Q-learning</span></div>
+                <p class="filename">Bloembergen2010lfaq.pdf</p>
+            </article>
+            
+            <article class="paper"
+                     data-category="Computer Science">
+                <h2>Parallel Processing of the Radiosity Method</h2>
+                <p class="category">Computer Science</p>
+                <p>This paper explores the parallel processing of the radiosity method, a technique for generating realistic images. The method is based on a well-established theory that describes the radiation energy of light. The authors analyze various models of parallel computing for solving the radiosity problem and discuss the importance of message density in multiprocessor systems.</p>
+                <div><span class="keyword">radiosity</span> <span class="keyword">rendering</span> <span class="keyword">parallel computing</span> <span class="keyword">multiprocessor systems</span> <span class="keyword">message density</span> <span class="keyword">algorithm optimization</span> <span class="keyword">system configuration</span> <span class="keyword">memory allocation</span></div>
+                <p class="filename">Parallel processing of the radiosity method.pdf</p>
+            </article>
+            
+            <article class="paper"
+                     data-category="Artificial Intelligence">
+                <h2>Reinforcement Learning of Coordination in Cooperative Multi-agent Systems</h2>
+                <p class="category">Artificial Intelligence</p>
+                <p>This paper investigates the use of reinforcement learning to improve coordination in cooperative multi-agent systems. The authors propose a novel action selection strategy for Q-learning that can handle scenarios where mutual observation of actions is not possible. They demonstrate empirically that their approach leads to convergence to the optimal joint action almost always, even in difficult cases.</p>
+                <div><span class="keyword">reinforcement learning</span> <span class="keyword">coordination</span> <span class="keyword">multi-agent systems</span> <span class="keyword">Q-learning</span> <span class="keyword">action selection strategy</span> <span class="keyword">optimal joint action</span> <span class="keyword">convergence</span></div>
+                <p class="filename">RL of Coordination.pdf</p>
+            </article>
+            
+            <article class="paper"
+                     data-category="Business">
+                <h2>The Art of Success: An Exclusive Interview with Donald Trump</h2>
+                <p class="category">Business</p>
+                <p>In this exclusive interview, Donald Trump shares his seven-step plan for success, from loving what you do to getting even with those who wrong you. Trump, a successful businessman and TV personality, believes that success is within reach for anyone who follows his advice.</p>
+                <div><span class="keyword">success</span> <span class="keyword">business</span> <span class="keyword">marketing</span> <span class="keyword">Donald Trump</span> <span class="keyword">The Apprentice</span> <span class="keyword">branding</span> <span class="keyword">public relations</span> <span class="keyword">product launch</span> <span class="keyword">luck</span> <span class="keyword">motivation</span></div>
+                <p class="filename">An_Efficient_Radiosity_Approach_for_Realistic_Imag.pdf</p>
+            </article>
+            
+            <article class="paper"
+                     data-category="Artificial Intelligence, Machine Learning, Game Theory">
+                <h2>The Dynamics of Reinforcement Learning in Cooperative Multiagent Systems</h2>
+                <p class="category">Artificial Intelligence, Machine Learning, Game Theory</p>
+                <p>This paper examines the factors that influence the dynamics of reinforcement learning in cooperative multiagent systems. It distinguishes between independent learners and joint action learners, and studies the influence of game structure and exploration strategies on convergence to Nash equilibria. The paper also proposes alternative optimistic exploration strategies to increase the likelihood of convergence to an optimal equilibrium.</p>
+                <div><span class="keyword">reinforcement learning</span> <span class="keyword">cooperative multiagent systems</span> <span class="keyword">Nash equilibria</span> <span class="keyword">game structure</span> <span class="keyword">exploration strategies</span> <span class="keyword">coordinated behavior</span> <span class="keyword">coordinate learning</span> <span class="keyword">fictitious play</span> <span class="keyword">reduced profile</span> <span class="keyword">Nash equilibrium</span> <span class="keyword">optimal equilibrium</span></div>
+                <p class="filename">ClausandBoutilier-AAAI.pdf</p>
+            </article>
+            </div>
+
+            <script>
+                const search = document.getElementById("search");
+                const category = document.getElementById("category");
+                const papers = document.querySelectorAll(".paper");
+                const count = document.getElementById("count");
+
+                function filterPapers() {
+                    const query = search.value.toLowerCase();
+                    const selected = category.value;
+                    let visible = 0;
+
+                    papers.forEach(paper => {
+                        const matchesSearch =
+                            paper.textContent.toLowerCase().includes(query);
+                        const matchesCategory =
+                            !selected ||
+                            paper.dataset.category === selected;
+
+                        const show = matchesSearch && matchesCategory;
+                        paper.style.display = show ? "" : "none";
+                        if (show) visible++;
+                    });
+
+                    count.textContent = visible + " paper(s) found";
+                }
+
+                search.addEventListener("input", filterPapers);
+                category.addEventListener("change", filterPapers);
+                filterPapers();
+            </script>
+        </body>
+        </html>
+        
