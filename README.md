@@ -16,7 +16,7 @@ Automated PDF processing pipeline using Apache Airflow, PyMuPDF4LLM, Ollama, SQL
 Clone the repository and open its directory:
 
 ```bash
-git clone <https://github.com/FranklinFlament/Assignment3>
+git clone https://github.com/FranklinFlament/Assignment3
 cd Assignment3
 ```
 
@@ -159,8 +159,10 @@ Create a symbolic link from the project to the synchronized folder:
 ```bash
 cd ~/Desktop/Assignment3
 
-DRIVE="$HOME/Library/CloudStorage/GoogleDrive-flamentfranklin02@gmail.com/Mon Drive/ResearchLibrary/papers"
+DRIVE_ACCOUNT="GoogleDrive-YOUR_EMAIL@gmail.com"
+DRIVE="$HOME/Library/CloudStorage/$DRIVE_ACCOUNT/Mon Drive/ResearchLibrary/papers"
 
+mkdir -p "$DRIVE"
 ln -s "$DRIVE" ResearchLibrary/papers
 ```
 
@@ -174,5 +176,3 @@ The synchronization was successfully tested: a PDF uploaded through Google Drive
 
 - Ollama must be running before triggering the DAG.
 - The Discord webhook URL must be configured before starting Airflow.
-- Do not commit `.venv/`, `airflow/`, `data/`, or webhook credentials.
-- The `ResearchLibrary/papers/` directory can be synchronized with Google Drive externally.
