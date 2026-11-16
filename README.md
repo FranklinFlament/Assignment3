@@ -44,7 +44,47 @@ Check that Ollama is running:
 curl http://localhost:11434/v1/models
 ```
 
-## 4. Start Airflow
+## 4. Google Drive Synchronization
+
+The pipeline uses Google Drive for desktop to synchronize both the input PDFs and the generated HTML catalogue. The SQLite database remains stored locally.
+
+Install [Google Drive for desktop](https://www.google.com/drive/download/) and sign in to your Google account.
+
+Create the following folder structure in Google Drive:
+
+```text
+Mon Drive/
+└── ResearchLibrary/
+    ├── papers/
+    └── output/
+```
+
+Create symbolic links from the project to the Google Drive folders:
+
+```bash
+cd ~/Desktop/Assignment3
+
+DRIVE_ACCOUNT="GoogleDrive-YOUR_EMAIL@gmail.com"
+DRIVE="$HOME/Library/CloudStorage/$DRIVE_ACCOUNT/Mon Drive/ResearchLibrary"
+
+mkdir -p "$DRIVE/papers" "$DRIVE/output"
+mkdir -p ResearchLibrary
+
+ln -s "$DRIVE/papers" ResearchLibrary/papers
+ln -s "$DRIVE/output" ResearchLibrary/output
+```
+
+**Note:** Replace `DRIVE_ACCOUNT` with your local Google Drive folder name. The `ResearchLibrary/papers` and `ResearchLibrary/output` paths must not already exist before creating the symbolic links. If they exist, copy their contents to the corresponding Google Drive folders and rename the original directories before creating the links.
+
+Once configured:
+
+- New PDFs uploaded to Google Drive are automatically synchronized and detected by the scheduled Airflow DAG.
+- The generated `index.html` is automatically synchronized to Google Drive.
+- The SQLite database remains local in `data/papers.db`.
+
+The synchronization was successfully tested by uploading a new PDF through Google Drive, processing it with Airflow, and receiving a Discord notification.
+
+## 5. Start Airflow
 
 Open **Terminal 1** in the project directory:
 
@@ -73,7 +113,7 @@ export AIRFLOW__CORE__LOAD_EXAMPLES=False
 airflow dags list
 ```
 
-## 5. Open Airflow
+## 6. Open Airflow
 
 Open http://localhost:8080.
 
@@ -84,13 +124,7 @@ Log in with:
 
 Find the DAG named `paper_pipeline`.
 
-## 6. Run the pipeline
-
-Create the input directory if needed:
-
-```bash
-mkdir -p ResearchLibrary/papers
-```
+## 7. Run the pipeline
 
 Add PDF files to:
 
@@ -106,7 +140,7 @@ In the Airflow web interface:
 
 The DAG also runs automatically every hour.
 
-## 7. View the results
+## 8. View the results
 
 Open the generated HTML catalog:
 
@@ -124,7 +158,7 @@ sqlite3 data/papers.db "SELECT filename, title, category FROM papers;"
 
 Newly processed papers also trigger a Discord notification.
 
-## 8. Pipeline tasks
+## 9. Pipeline tasks
 
 ```text
 scan_papers
@@ -139,38 +173,6 @@ generate_html    notify_discord
 ```
 
 Previously processed PDF filenames are skipped using SQLite. The database and generated Markdown files are stored locally in `data/`.
-
-## Google Drive Synchronization
-
-The pipeline monitors a Google Drive-synced folder for new PDF files.
-
-On macOS, install [Google Drive for desktop](https://www.google.com/drive/download/) and sign in to your Google account.
-
-Create the following folder in Google Drive:
-
-```text
-Mon Drive/
-└── ResearchLibrary/
-    └── papers/
-```
-
-Create a symbolic link from the project to the synchronized folder:
-
-```bash
-cd ~/Desktop/Assignment3
-
-DRIVE_ACCOUNT="GoogleDrive-YOUR_EMAIL@gmail.com"
-DRIVE="$HOME/Library/CloudStorage/$DRIVE_ACCOUNT/Mon Drive/ResearchLibrary/papers"
-
-mkdir -p "$DRIVE"
-ln -s "$DRIVE" ResearchLibrary/papers
-```
-
-**Note:** The `ln -s` command assumes that `ResearchLibrary/papers` does not already exist. If it exists, move or back up its contents first.
-
-Any new PDF uploaded to this Google Drive folder becomes accessible locally and is automatically detected by the scheduled Airflow DAG.
-
-The synchronization was successfully tested: a PDF uploaded through Google Drive was processed by the pipeline, and a Discord notification was received.
 
 ## Notes
 
